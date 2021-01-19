@@ -29,6 +29,7 @@ add_library(stack-lib INTERFACE)
 target_include_directories(stack-lib
         INTERFACE  ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+
 add_executable(tests
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
 )

@@ -1,8 +1,9 @@
 #include <gtest/gtest.h>
 #include <stack.hpp>
+#include <stackNotCopyTypes.hpp>
 
 TEST(PushNPop, test1) {
-  task1::Stack<int> S;
+  Stack<int> S;
   S.push(5);
   EXPECT_EQ(S.head(), 5);
   S.push(3);
@@ -15,15 +16,15 @@ TEST(PushNPop, test1) {
 }
 
 TEST(Push_emplace, test2) {
-  task2::Stack<int> S;
-  S.push_emplace(1, 2, 4);
-  EXPECT_EQ(S.head(), 4);
-  S.pop();
-  EXPECT_EQ(S.head(), 2);
-  S.pop();
-  EXPECT_EQ(S.head(), 1);
-  EXPECT_THROW({S.pop();}, std::runtime_error);
-  EXPECT_THROW({S.head();}, std::runtime_error);
-  S.push(10);
-  EXPECT_EQ(S.head(), 10);
+  StackNotCopyTypes<int> SN;
+  SN.push_emplace(1, 2, 4);
+  EXPECT_EQ(SN.head(), 4);
+  SN.pop();
+  EXPECT_EQ(SN.head(), 2);
+  SN.pop();
+  EXPECT_EQ(SN.head(), 1);
+  EXPECT_THROW({SN.pop();}, std::runtime_error);
+  EXPECT_THROW({SN.head();}, std::runtime_error);
+  SN.push(10);
+  EXPECT_EQ(SN.head(), 10);
 }
